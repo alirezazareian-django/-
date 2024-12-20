@@ -1,0 +1,6 @@
+<h1>Order #{{ order.id }}</h1>
+<p>Customer: {{ order.customer.first_name }} {{ order.customer.last_name }}</p>
+<p>Book: {{ order.book.title }}</p>
+<p>Quantity: {{ order.quantity }}</p>
+<p>Total Price: {{ order.total_price }}</p>
+<a href="{% url 'order_list' %}">Back to Order List</a>

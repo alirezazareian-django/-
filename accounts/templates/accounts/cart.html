@@ -1,0 +1,30 @@
+<h1>Your Cart</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Book</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in cart.items.all %}
+        <tr>
+            <td>{{ item.book.title }}</td> <!-- تغییر product.name به book.title -->
+            <td>{{ item.quantity }}</td>
+            <td>${{ item.get_total_price }}</td> <!-- محاسبه قیمت کل از متد مربوطه -->
+            <td>
+                <form method="post" action="{% url 'remove_from_cart' item.id %}">
+                    {% csrf_token %}
+                    <button type="submit">Remove</button>
+                </form>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">Your cart is empty.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

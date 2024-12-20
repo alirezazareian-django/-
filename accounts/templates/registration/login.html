@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e0f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+        .login-container {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            text-align: center;
+        }
+        h1 {
+            color: #00796b;
+            font-size: 26px;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-field {
+            margin-bottom: 20px;
+        }
+        .form-field input {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 16px;
+            border: 2px solid #00796b;
+            border-radius: 8px;
+            box-sizing: border-box;
+            transition: border 0.3s ease;
+        }
+        .form-field input:focus {
+            border-color: #004d40;
+            outline: none;
+        }
+        .captcha-field {
+            margin: 20px 0;
+            text-align: left;
+        }
+        .captcha-field img {
+            margin-top: 10px;
+        }
+        button {
+            padding: 12px;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #004d40;
+        }
+        .extra-links {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .extra-links a {
+            color: #00796b;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .extra-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login</h1>
+        <!-- فرم ورود کاربر -->
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-field">
+                <!-- نمایش فیلدهای فرم (مانند نام کاربری و رمز عبور) -->
+                {{ form.as_p }}
+            </div>
+            <div class="captcha-field">
+                <!-- فیلد کپچا -->
+                {{ form.captcha }}
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <div class="extra-links">
+            <!-- این لینک مربوط به صفحه بازنشانی رمز عبور است -->
+            <a href="{% url 'password_reset' %}">Forgot your password?</a>
+        </div>
+    </div>
+</body>
+</html>

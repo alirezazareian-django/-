@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}وب‌سایت من{% endblock %}</title>
+    <!-- لینک به فایل استایل CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <!-- هدر سایت -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">خانه</a></li>
+                <li><a href="/password_reset/">بازنشانی رمز عبور</a></li>
+                <li><a href="/password_change/">تغییر رمز عبور</a></li>
+                <!-- اضافه کردن لینک‌های دیگر -->
+            </ul>
+        </nav>
+    </header>
+
+    <!-- محتوای اصلی صفحه -->
+    <main>
+        {% block content %}
+        <!-- محتوای هر صفحه در اینجا نمایش داده می‌شود -->
+        {% endblock %}
+    </main>
+
+    <!-- فوتر سایت -->
+    <footer>
+        <p>&copy; 2024 وب‌سایت من. تمامی حقوق محفوظ است.</p>
+    </footer>
+</body>
+</html>
