@@ -109,7 +109,7 @@ class ProfileView(UpdateView):
 class CartView(View):
     def get(self, request):
         cart, created = Cart.objects.get_or_create(user=request.user)
-        return render(request, 'cart.html', {'cart': cart})
+        return render(request, 'accounts/cart.html', {'cart': cart})
 
 @method_decorator(login_required, name='dispatch')
 class AddToCartView(View):
