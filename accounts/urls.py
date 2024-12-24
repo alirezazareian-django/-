@@ -4,8 +4,8 @@ from .views import SignupView, LoginView, DashboardView, HomeView
 from . import views
 from django.urls import path, include
 from .views import ProfileView
-from .views import CartView, AddToCartView, RemoveFromCartView
-
+from .views import CartView, AddToCartView, RemoveFromCartView, ApplyDiscountCodeView
+from .views import BookCreateView
 
 urlpatterns = [
     # Custom Views
@@ -20,9 +20,9 @@ urlpatterns = [
     path('books/', views.BookListView.as_view(), name='book_list'),
 
     # جزئیات کتاب
-    path('books/<int:pk>/', views.BookListView.as_view(), name='book_detail'),
+    path('books/<int:pk>/', views.BookDetailView.as_view(), name='book_detail'),
 
-     # لیست مشتری‌ها
+    # لیست مشتری‌ها
     path('customers/', views.CustomerListView.as_view(), name='customer_list'),
    
     # جزئیات مشتری
@@ -36,13 +36,13 @@ urlpatterns = [
     
     path('profile/', ProfileView.as_view(), name='profile'),
 
-   
+    # سبد خرید
     path('cart/', CartView.as_view(), name='cart'),
     path('cart/add/<int:book_id>/', AddToCartView.as_view(), name='add_to_cart'),  
     path('cart/remove/<int:item_id>/', RemoveFromCartView.as_view(), name='remove_from_cart'),
+
+    # اعمال کد تخفیف
+    path('cart/apply_discount/', ApplyDiscountCodeView.as_view(), name='apply_discount_code'),
+
+    path('add_book/', BookCreateView.as_view(), name='add_book'),
 ]
-
-
-
-
-

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.timezone import now
+from django.utils import timezone
 
 
 
@@ -77,6 +78,22 @@ def __str__(self):
 
 def get_total_price(self):
     return self.book.price * self.quantity
+
+class DiscountCode(models.Model):
+    code = models.CharField(max_length=20, unique=True)  # کد تخفیف
+    discount_type = models.CharField(max_length=10, choices=[('percentage', 'Percentage'), ('fixed', 'Fixed')])  # نوع تخفیف
+    discount_value = models.DecimalField(max_digits=10, decimal_places=2)  # مقدار تخفیف (درصد یا مبلغ ثابت)
+    expiration_date = models.DateTimeField()  # تاریخ انقضای کد تخفیف
+    is_active = models.BooleanField(default=True)  # فعال بودن کد تخفیف
+
+    def __str__(self):
+        return self.code
+
+    def is_valid(self):
+        return self.is_active and self.expiration_date > timezone.now()
+
+
+
     
 
 

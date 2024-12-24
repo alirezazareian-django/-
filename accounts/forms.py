@@ -87,4 +87,23 @@ class ProfileForm(forms.ModelForm):
         model=Profile
         fields=['bio','location','profile_image']
 
+class DiscountCodeForm(forms.Form):
+    discount_code = forms.CharField(
+        max_length=20,
+        required=True,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'کد تخفیف را وارد کنید'
+        }),
+        label='کد تخفیف'
+    )
+
+class BookForm(forms.ModelForm):
+    class Meta:
+        model = Book
+        fields = ['title', 'author', 'description', 'price', 'image']
+
+
+        
+
     
